@@ -1,0 +1,32 @@
+.sidebar
+  h1 Catalogue
+
+  label(for="contributors") Contributed by:
+  select(id="contributors")
+    option Anyone
+    each val in contributors
+      if val == contributorFilter
+        option(selected)= val
+      else
+        option= val
+
+  label(for="sort") Sort by:
+  select(id="sort")
+    each val, index in {titleAZ: 'Title A-Z', titleZA: 'Title Z-A', authorAZ: 'Author A-Z', authorZA: 'Author Z-A'}
+      if index == sortFilter
+        option(selected, value=index)= val
+      else
+        option(value=index)= val
+
+  //-
+    span Include subjects:
+    ul
+      li
+        input(type="checkbox")
+        span  Arts
+      li
+        input(type="checkbox")
+        span  Computing
+      li
+        input(type="checkbox")
+        span  Reference

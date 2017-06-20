@@ -1,0 +1,34 @@
+html
+  title Dynamic Card Catalogue
+  link(rel="stylesheet", href="style.css")
+
+  body
+
+    mixin card(title, author, thema, category, contributor)
+      .card-wrapper
+        .card
+          .classification= thema
+          .info
+            .author= author
+            h2= title
+            span= category
+            .bottom
+              .links
+                img.icon(src="link.svg", aria-hidden="true")
+                | 
+                a(href='http://www.worldcat.org/search?qt=worldcat_org_all&q=' + encodeURIComponent(title)) Library
+                |  - 
+                a(href='https://www.goodreads.com/search?q=' + encodeURIComponent(title)) Goodreads
+                |  - 
+                a(href='http://www.amazon.ca/s?url=search-alias%3Daps&field-keywords=' + encodeURIComponent(title)) Amazon
+                span.incidental  (<img src="maple-leaf.svg" alt="Canada" class="icon">)
+              .contributor Contributed by 
+                = contributor
+
+    .catalogue
+      each val in books
+        +card(val.title, val.author, val.thema, val.category, val.contributor)
+
+  include sidebar.pug
+
+  script(src='script.js')
