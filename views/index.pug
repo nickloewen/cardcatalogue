@@ -1,6 +1,7 @@
 html
   title Dynamic Card Catalogue
   link(rel="stylesheet", href="style.css")
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   body
 
@@ -9,8 +10,8 @@ html
         .card
           .classification= thema
           .info
-            .author= author
             h2= title
+            .author= author
             span= category
             .bottom
               .links
@@ -25,10 +26,10 @@ html
               .contributor Contributed by 
                 = contributor
 
+    include sidebar.pug
+
     .catalogue
       each val in books
         +card(val.title, val.author, val.thema, val.category, val.contributor)
-
-  include sidebar.pug
 
   script(src='script.js')

@@ -1,47 +1,44 @@
 * {
   box-sizing: border-box;
-  font-size: 18px;
   margin: 0;
   padding: 0;
 }
 
 body {
   background: #eee;
+  font-size: 18px;
 }
 
 .catalogue {
-  font-family: monospace;
   max-width: 12.5cm;
   margin: auto;
-  padding-top: 3em;
+  width: 85%;
 }
 
 .card-wrapper {
   width: 100%;
-  padding-bottom: 60%;
+  padding-bottom: 30%;
   position: relative;
-  //border: 1px solid black;
-  box-shadow: 0 5px 10px #ddd;
+  box-shadow: 0 2px 10px lightgrey;
   background: white;
   margin-bottom: 1em;
+  font-family: monospace;
 }
 
 .card {
   padding: 1em;
   margin: 1em;
-
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
 }
 
 h2 {
   font-weight: 400;
   text-decoration: underline;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+  font-size: 1em;
 }
 
 .author {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
   .author--last {
@@ -72,36 +69,69 @@ a:hover, a:active {
 
 .contributor {
   color: grey;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .incidental {
   opacity: 0.5;
 }
 
-/* ---- */
+/* nav */
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #fff;
-  height: 100%;
-  width: 20%;
-  padding: 3em 2em 0;
+.nav {
+  background: white;
+  width: 100%;
+  padding: 1em 10%;
   box-shadow: 0 5px 10px #ddd;
   font-family: "TeX Gyre Schola", serif;
-}
-
-h1 {
+  text-align: center;
   margin-bottom: 2em;
 }
 
-label {
-  display: block;
+h1 {
+  margin-bottom: 1em;
+  font-size: 1.5em;
 }
 
-select {
-  display: block;
-  margin-bottom: 1em;
+.filter {
+  display: inline-block;
+  margin-right: 2em;
+  vertical-align: top;
+}
+
+/* accordion */
+
+.card-wrapper {
+  transform: perspective(700px) rotateX(-15deg);
+  transition: all 0.2s ease;
+}
+
+.card-wrapper + .card-wrapper {
+  margin-top: -250px;
+}
+
+.card-wrapper.selected {
+  transform: scale(1.1) translate3d(0,0,100px);
+}
+
+.card-wrapper.selected:nth-of-type(odd) {
+  transform: scale(1.11) translate3d(0,0,100px);
+}
+
+.card-wrapper.selected + .card-wrapper {
+  margin-top: 0px;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+
+  .card-wrapper + .card-wrapper {
+    margin-top: -100px;
+  }
+
+  .filter {
+    margin-right: 0;
+  }
 }

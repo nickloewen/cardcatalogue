@@ -40,19 +40,15 @@ app.get('/', function (req, res) {
     // get list of contributors
     var contributorsQuery = jsonata('contributor')
     var contributors = uniq(contributorsQuery.evaluate(jsonData))
-    // console.log(contributors)
 
     // show only data for the requested contributor
 
     if (contributor !== 'Anyone') {
       var sortByContributorQuery = jsonata("$[contributor='" + contributor + "']")
       jsonData = sortByContributorQuery.evaluate(jsonData)
-      console.log(jsonData)
     }
 
     // sort the data
-    // console.log('sort', sort)
-    // console.log('contributor', contributor)
 
     if (Array.isArray(jsonData)) { // in case there's only one item
       if (sort === 'titleAZ') {
