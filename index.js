@@ -41,10 +41,13 @@ app.get('/', function (req, res) {
 
     // get list of contributors
     var contributorsQuery = jsonata('contributor')
-    var contributors = uniq(contributorsQuery.evaluate(jsonData))
+    var contributors = contributorsQuery.evaluate(jsonData)
     if (!Array.isArray(contributors)) {
-	    contributors = [contributors]
+        contributors = [contributors]
     }
+    var contributors = uniq(contributors)
+
+console.log(contributors)
 
     // show only data for the requested contributor
 
@@ -52,6 +55,8 @@ app.get('/', function (req, res) {
       var sortByContributorQuery = jsonata("$[contributor='" + contributor + "']")
       jsonData = sortByContributorQuery.evaluate(jsonData)
     }
+
+	  console.log(jsonData)
 
     // sort the data
 
@@ -68,6 +73,8 @@ app.get('/', function (req, res) {
     } else {
       jsonData = [jsonData]
     }
+
+	  console.log(jsonData)
 
     res.render('index', {books: jsonData, contributors: contributors, sortFilter: sort, contributorFilter: contributor})
   })
