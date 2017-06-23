@@ -5,14 +5,17 @@ html
 
   body
 
-    mixin card(title, author, thema, category, contributor)
+    mixin card(title, author, themaCategories, themaCategoryNames, contributor)
       .card-wrapper
         .card
-          .classification= thema
+          ul.classification
+            each val in themaCategories
+              li=val
           .info
             h2= title
             .author= author
-            span= category
+            - themaCategoryNames = 'in ' + themaCategoryNames.join('; ')
+            span= themaCategoryNames
             .bottom
               .links
                 img.icon(src="link.svg", aria-hidden="true")
@@ -30,6 +33,6 @@ html
 
     .catalogue
       each val in books
-        +card(val.title, val.author, val.thema, val.category, val.contributor)
+        +card(val.title, val.author, val.themaCategories, val.themaCategoryNames, val.contributor)
 
   script(src='script.js')

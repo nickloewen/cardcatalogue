@@ -47,16 +47,12 @@ app.get('/', function (req, res) {
     }
     var contributors = uniq(contributors)
 
-console.log(contributors)
-
     // show only data for the requested contributor
 
     if (contributor !== 'Anyone') {
       var sortByContributorQuery = jsonata("$[contributor='" + contributor + "']")
       jsonData = sortByContributorQuery.evaluate(jsonData)
     }
-
-	  console.log(jsonData)
 
     // sort the data
 
@@ -73,8 +69,6 @@ console.log(contributors)
     } else {
       jsonData = [jsonData]
     }
-
-	  console.log(jsonData)
 
     res.render('index', {books: jsonData, contributors: contributors, sortFilter: sort, contributorFilter: contributor})
   })

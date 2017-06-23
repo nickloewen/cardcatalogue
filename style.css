@@ -47,6 +47,8 @@ h2 {
 
 .classification {
   float: right;
+  text-align: right;
+  list-style-type: none;
 }
 
 .bottom {
