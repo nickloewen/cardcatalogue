@@ -80,13 +80,13 @@ console.log(contributors)
   })
 })
 
-app.get('/api', function (req, res) {
-  fs.readFile('database.json', 'utf8', function readDB (err, data) {
-    if (err) throw err
-    res.json(data)
-  })
-})
+function errorHandler(err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+}
+
+app.use(errorHandler)
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Listening on port 3000')
 })
