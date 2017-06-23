@@ -5,6 +5,8 @@ const uniq = require('array-uniq')
 
 const app = express()
 
+require('dotenv').config();
+
 app.set('view engine', 'pug')
 app.use(express.static('.'))
 
@@ -40,6 +42,9 @@ app.get('/', function (req, res) {
     // get list of contributors
     var contributorsQuery = jsonata('contributor')
     var contributors = uniq(contributorsQuery.evaluate(jsonData))
+    if (!Array.isArray(contributors)) {
+	    contributors = [contributors]
+    }
 
     // show only data for the requested contributor
 

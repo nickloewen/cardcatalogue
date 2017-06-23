@@ -8,11 +8,12 @@
     "express": "^4.15.3",
     "jsonata": "^1.2.4",
     "pug": "^2.0.0-rc.2"
+    "dotenv": "^4.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "https://github.com/nickloewen/cardcatalogue",
   "author": "Nick Loewen",
   "license": "MIT"
 }
